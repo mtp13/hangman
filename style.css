@@ -1,3 +1,26 @@
 * {
   outline: solid 1px lime;
 }
+
+header {
+  text-align: center;
+  font-family: sans-serif;
+  margin: 25px;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
+}
+.letters {
+  display: flex;
+  justify-content: space-around;
+  width: 350px;
+}
+.letter {
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  border: 1px solid black;
+}
