@@ -19,7 +19,7 @@ main {
 }
 
 .letter {
-  font-family: "Shadows Into Light", serif;
+  font-family: "Courier New", Courier, monospace;
   font-size: 48px;
   font-weight: bold;
   height: 50px;
