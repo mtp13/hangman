@@ -1,6 +1,12 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 body {
   font-family: sans-serif;
   text-align: center;
+  width: 350px;
   margin: 25px;
 }
 
@@ -15,7 +21,6 @@ main {
 .letter-grid {
   display: flex;
   justify-content: space-around;
-  width: 350px;
 }
 
 .letter {
