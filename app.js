@@ -3,7 +3,6 @@ const MAX_LENGTH = 3;
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
 const word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 const letters = word.split("");
-console.log(letters);
 const letterGrid = document.querySelector(".letter-grid");
 letterGrid.innerHTML = "";
 letters.map((letter) => {
