@@ -1,9 +1,9 @@
-header,
-footer {
-  text-align: center;
+body {
   font-family: sans-serif;
+  text-align: center;
   margin: 25px;
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -11,14 +11,16 @@ main {
   align-items: center;
   margin: 25px;
 }
+
 .letter-grid {
   display: flex;
   justify-content: space-around;
   width: 350px;
 }
+
 .letter {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 36px;
+  font-family: "Shadows Into Light", serif;
+  font-size: 48px;
   font-weight: bold;
   height: 50px;
   width: 50px;
