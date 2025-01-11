@@ -1,4 +1,6 @@
-const word = "apples";
+import { words } from "./words.js";
+
+const word = words[Math.floor(Math.random() * words.length)];
 const letters = word.split("");
 console.log(letters);
 const letterGrid = document.querySelector(".letter-grid");
