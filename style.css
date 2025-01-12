@@ -8,6 +8,9 @@ body {
   font-family: sans-serif;
   text-align: center;
   width: 350px;
+  /* margin: 25px; */
+}
+header {
   margin: 25px;
 }
 
@@ -16,7 +19,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 25px;
+  /* margin: 25px; */
 }
 
 .letter-grid {
@@ -82,4 +85,14 @@ main {
 
 .guesses {
   font-size: 24px;
+  font-weight: bold;
+}
+
+button {
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
 }

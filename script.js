@@ -1,9 +1,10 @@
 import { words } from "./words.js";
-const MAX_LENGTH = 4;
+const MAX_LENGTH = 3;
 const guesses = document.querySelector(".guesses");
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
-const word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 console.log(word);
+const newGameButton = document.getElementById("new-game-button");
 let hangman = "HANGMAN".split("");
 const MAX_GUESSES = hangman.length;
 let numberOfIncorrectGuesses = 0;
@@ -21,6 +22,19 @@ function initializeLetters(word) {
     letterGrid.appendChild(letterElement);
   });
 }
+
+newGameButton.addEventListener("click", newGame);
+function newGame() {
+  word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+  console.log(word);
+  hangman = "HANGMAN".split("");
+  numberOfIncorrectGuesses = 0;
+  gameOver = false;
+  guesses.textContent = "Try to spell the word";
+  initializeLetters(word);
+  initializeKeyboard();
+}
+
 function initializeKeyboard() {
   const keyboard = document.querySelector(".keyboard");
   keyboard.innerHTML = "";
@@ -67,11 +81,11 @@ function updateGuesses(number) {
   if (number === 1) {
     guesses.textContent = "";
   }
-  guesses.textContent += hangman.shift();
+  guesses.textContent += hangman.shift() + " ";
 
   if (remainingGuesses === 0) {
     gameOver = true;
-    guesses.textContent = "You lost!";
+    guesses.textContent += "- You lost!";
   }
   if (gameOver) {
     const hiddenLetters = document.querySelectorAll(".hidden");
