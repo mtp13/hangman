@@ -24,6 +24,7 @@ function initializeLetters(word) {
 }
 
 newGameButton.addEventListener("click", newGame);
+
 function newGame() {
   word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
   console.log(word);
