@@ -1,6 +1,6 @@
 import { words } from "./words.js";
 const MAX_LENGTH = 4;
-
+const guesses = document.querySelector(".guesses");
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
 const word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 console.log(word);
@@ -44,6 +44,11 @@ function initializeKeyboard() {
           letterElement.classList.remove("hidden");
           keyLetterElement.classList.add("found");
           found = true;
+          const hiddenLetters = document.querySelectorAll(".hidden");
+          if (hiddenLetters.length === 0) {
+            gameOver = true;
+            guesses.textContent = "You won!";
+          }
         }
       });
       if (!found) {
@@ -58,17 +63,12 @@ function initializeKeyboard() {
 }
 
 function updateGuesses(number) {
-  const guesses = document.querySelector(".guesses");
   const remainingGuesses = MAX_GUESSES - number;
   if (number === 1) {
     guesses.textContent = "";
   }
   guesses.textContent += hangman.shift();
-  const hiddenLetters = document.querySelectorAll(".hidden");
-  if (hiddenLetters.length === 0) {
-    gameOver = true;
-    guesses.textContent = "You won!";
-  }
+
   if (remainingGuesses === 0) {
     gameOver = true;
     guesses.textContent = "You lost!";
