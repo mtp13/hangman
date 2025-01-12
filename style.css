@@ -3,6 +3,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 body {
   font-family: sans-serif;
   text-align: center;
@@ -25,7 +26,35 @@ main {
 
 .letter {
   font-family: "Courier New", Courier, monospace;
-  font-size: 48px;
+  font-size: 36px;
+  font-weight: bold;
+  height: 50px;
+  width: 50px;
+  border: 3px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.hidden {
+  color: white;
+}
+
+.game-over {
+  color: lightcoral;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 25px;
+}
+
+.key {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 24px;
   font-weight: bold;
   height: 50px;
   width: 50px;
@@ -34,8 +63,23 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 5px;
+}
+
+.found {
+  font-weight: normal;
+  background-color: lightgreen;
+}
+.not-found {
+  text-decoration: line-through;
+  font-weight: normal;
+  background-color: lightcoral;
 }
 
 .guess-grid {
   margin: 25px;
+}
+
+.guesses {
+  font-size: 24px;
 }
