@@ -1,5 +1,5 @@
 import { words } from "./words.js";
-const MAX_LENGTH = 3;
+const MAX_LENGTH = 4;
 const guesses = document.querySelector(".guesses");
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
 let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
