@@ -28,7 +28,7 @@ main {
 }
 
 .letter {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 36px;
   font-weight: bold;
   height: 50px;
@@ -57,7 +57,7 @@ main {
 }
 
 .key {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 24px;
   font-weight: bold;
   height: 50px;
