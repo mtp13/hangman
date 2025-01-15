@@ -68,8 +68,6 @@ function initializeKeyboard() {
       });
       if (!found) {
         keyLetterElement.classList.add('not-found');
-        // const hangman = document.querySelector(".hangman");
-        // hangman.classList.add("show");
         numberOfIncorrectGuesses++;
         updateGuesses(numberOfIncorrectGuesses);
       }
@@ -98,4 +96,3 @@ function updateGuesses(number) {
 }
 initializeLetters(word);
 initializeKeyboard();
-// updateGuesses(numberOfGuesses);
