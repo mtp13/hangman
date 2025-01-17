@@ -1,11 +1,12 @@
 import { words } from './words.js';
 const MAX_LENGTH = 4;
+const HANGMAN = 'McDearmon';
 const guesses = document.querySelector('.guesses');
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
 let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 console.log(word);
 const newGameButton = document.getElementById('new-game-button');
-let hangman = 'McDEARMON'.split('');
+let hangman = HANGMAN.split('');
 const MAX_GUESSES = hangman.length;
 let numberOfIncorrectGuesses = 0;
 let gameOver = false;
@@ -28,7 +29,7 @@ newGameButton.addEventListener('click', newGame);
 function newGame() {
   word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
   console.log(word);
-  hangman = 'McDEARMON'.split('');
+  hangman = HANGMAN.split('');
   numberOfIncorrectGuesses = 0;
   gameOver = false;
   guesses.textContent = 'Try to spell the word';
