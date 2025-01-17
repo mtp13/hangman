@@ -5,7 +5,7 @@ const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
 let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 console.log(word);
 const newGameButton = document.getElementById('new-game-button');
-let hangman = 'HANGMAN'.split('');
+let hangman = 'McDEARMON'.split('');
 const MAX_GUESSES = hangman.length;
 let numberOfIncorrectGuesses = 0;
 let gameOver = false;
