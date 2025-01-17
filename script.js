@@ -28,7 +28,7 @@ newGameButton.addEventListener('click', newGame);
 function newGame() {
   word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
   console.log(word);
-  hangman = 'HANGMAN'.split('');
+  hangman = 'McDEARMON'.split('');
   numberOfIncorrectGuesses = 0;
   gameOver = false;
   guesses.textContent = 'Try to spell the word';
