@@ -1,5 +1,5 @@
 import { words } from './words.js';
-const MAX_LENGTH = 4;
+const MAX_LENGTH = 5;
 const HANGMAN = 'McDearmon';
 const guesses = document.querySelector('.guesses');
 const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
