@@ -1,8 +1,8 @@
 import { words } from './words.js';
-const MAX_LENGTH = 8;
+const MAX_WORD_LENGTH = 8;
 const HANGMAN = 'McDearmon';
 const guesses = document.querySelector('.guesses');
-const filteredWords = words.filter((word) => word.length <= MAX_LENGTH);
+const filteredWords = words.filter((word) => word.length <= MAX_WORD_LENGTH);
 let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
 console.log(word);
 const newGameButton = document.getElementById('new-game-button');
