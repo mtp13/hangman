@@ -7,8 +7,11 @@ const filteredWords = words.filter((word) => word.length <= MAX_WORD_LENGTH);
 const newGameButton = document.getElementById('new-game-button');
 let hangman = HANGMAN.split('');
 const MAX_GUESSES = hangman.length;
-let gameOver;
-let numberOfIncorrectGuesses;
+const game = {
+  word: '',
+  gameOver: false,
+  numberOfIncorrectGuesses: 0,
+};
 
 function initializeLetters(word) {
   const letters = word.split('');
@@ -26,13 +29,13 @@ function initializeLetters(word) {
 newGameButton.addEventListener('click', newGame);
 
 function newGame() {
-  let word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
-  console.log(word);
+  game.word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+  console.log(game.word);
   hangman = HANGMAN.split('');
-  numberOfIncorrectGuesses = 0;
-  gameOver = false;
+  game.numberOfIncorrectGuesses = 0;
+  game.gameOver = false;
   guesses.textContent = 'Try to spell the word';
-  initializeLetters(word);
+  initializeLetters(game.word);
   initializeKeyboard();
 }
 
@@ -47,7 +50,7 @@ function initializeKeyboard() {
     keyLetterElement.textContent = keyLetter;
     keyboard.appendChild(keyLetterElement);
     keyLetterElement.addEventListener('click', () => {
-      if (gameOver) {
+      if (game.gameOver) {
         return;
       }
       const letterElements = document.querySelectorAll('.letter');
@@ -61,15 +64,15 @@ function initializeKeyboard() {
           found = true;
           const hiddenLetters = document.querySelectorAll('.hidden');
           if (hiddenLetters.length === 0) {
-            gameOver = true;
+            game.gameOver = true;
             guesses.textContent = 'You won!';
           }
         }
       });
       if (!found) {
         keyLetterElement.classList.add('not-found');
-        numberOfIncorrectGuesses++;
-        updateGuesses(numberOfIncorrectGuesses);
+        game.numberOfIncorrectGuesses++;
+        updateGuesses(game.numberOfIncorrectGuesses);
       }
     });
   }
@@ -83,10 +86,10 @@ function updateGuesses(number) {
   guesses.textContent += hangman.shift() + ' ';
 
   if (remainingGuesses === 0) {
-    gameOver = true;
+    game.gameOver = true;
     guesses.textContent += '- You lost!';
   }
-  if (gameOver) {
+  if (game.gameOver) {
     const hiddenLetters = document.querySelectorAll('.hidden');
     hiddenLetters.forEach((letter) => {
       letter.classList.remove('hidden');
