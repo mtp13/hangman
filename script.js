@@ -1,19 +1,19 @@
 'use strict';
 import { words } from './words.js';
 const MAX_WORD_LENGTH = 8;
-const HANGMAN = 'McDearmon';
-const guesses = document.querySelector('.guesses');
-const filteredWords = words.filter((word) => word.length <= MAX_WORD_LENGTH);
+const HANGMAN_STAGES = 'McDearmon';
+const guessesDisplay = document.querySelector('.guesses');
+const allowedWords = words.filter((word) => word.length <= MAX_WORD_LENGTH);
 const newGameButton = document.getElementById('new-game-button');
-let hangman = HANGMAN.split('');
-const MAX_GUESSES = hangman.length;
-const game = {
+let hangmanSequence = HANGMAN_STAGES.split('');
+const MAX_GUESSES = hangmanSequence.length;
+const gameState = {
   word: '',
   gameOver: false,
   numberOfIncorrectGuesses: 0,
 };
 
-function initializeLetters(word) {
+function setupLetterGrid(word) {
   const letters = word.split('');
   const letterGrid = document.querySelector('.letter-grid');
   letterGrid.innerHTML = '';
@@ -26,21 +26,21 @@ function initializeLetters(word) {
   });
 }
 
-newGameButton.addEventListener('click', newGame);
+newGameButton.addEventListener('click', startNewGame);
 
-function newGame() {
-  const index = Math.floor(Math.random() * filteredWords.length);
-  game.word = filteredWords.splice(index, 1).toString();
-  console.log(game.word);
-  hangman = HANGMAN.split('');
-  game.numberOfIncorrectGuesses = 0;
-  game.gameOver = false;
-  guesses.textContent = 'Try to spell the word';
-  initializeLetters(game.word);
-  initializeKeyboard();
+function startNewGame() {
+  const index = Math.floor(Math.random() * allowedWords.length);
+  gameState.word = allowedWords.splice(index, 1).toString();
+  console.log(gameState.word);
+  hangmanSequence = HANGMAN_STAGES.split('');
+  gameState.numberOfIncorrectGuesses = 0;
+  gameState.gameOver = false;
+  guessesDisplay.textContent = 'Try to spell the word';
+  setupLetterGrid(gameState.word);
+  setupKeyboard();
 }
 
-function initializeKeyboard() {
+function setupKeyboard() {
   const keyboard = document.querySelector('.keyboard');
   keyboard.innerHTML = '';
   for (let i = 65; i <= 90; i++) {
@@ -51,7 +51,7 @@ function initializeKeyboard() {
     keyLetterElement.textContent = keyLetter;
     keyboard.appendChild(keyLetterElement);
     keyLetterElement.addEventListener('click', () => {
-      if (game.gameOver) {
+      if (gameState.gameOver) {
         return;
       }
       const letterElements = document.querySelectorAll('.letter');
@@ -65,32 +65,32 @@ function initializeKeyboard() {
           found = true;
           const hiddenLetters = document.querySelectorAll('.hidden');
           if (hiddenLetters.length === 0) {
-            game.gameOver = true;
-            guesses.textContent = 'You won!';
+            gameState.gameOver = true;
+            guessesDisplay.textContent = 'You won!';
           }
         }
       });
       if (!found) {
         keyLetterElement.classList.add('not-found');
-        game.numberOfIncorrectGuesses++;
-        updateGuesses(game.numberOfIncorrectGuesses);
+        gameState.numberOfIncorrectGuesses++;
+        updateHangmanProgress(gameState.numberOfIncorrectGuesses);
       }
     });
   }
 }
 
-function updateGuesses(number) {
+function updateHangmanProgress(number) {
   const remainingGuesses = MAX_GUESSES - number;
   if (number === 1) {
-    guesses.textContent = '';
+    guessesDisplay.textContent = '';
   }
-  guesses.textContent += hangman.shift() + ' ';
+  guessesDisplay.textContent += hangmanSequence.shift() + ' ';
 
   if (remainingGuesses === 0) {
-    game.gameOver = true;
-    guesses.textContent += '- You lost!';
+    gameState.gameOver = true;
+    guessesDisplay.textContent += '- You lost!';
   }
-  if (game.gameOver) {
+  if (gameState.gameOver) {
     const hiddenLetters = document.querySelectorAll('.hidden');
     hiddenLetters.forEach((letter) => {
       letter.classList.remove('hidden');
@@ -99,4 +99,4 @@ function updateGuesses(number) {
   }
 }
 
-newGame();
+startNewGame();
