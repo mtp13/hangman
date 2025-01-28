@@ -29,7 +29,8 @@ function initializeLetters(word) {
 newGameButton.addEventListener('click', newGame);
 
 function newGame() {
-  game.word = filteredWords[Math.floor(Math.random() * filteredWords.length)];
+  const index = Math.floor(Math.random() * filteredWords.length);
+  game.word = filteredWords.splice(index, 1).toString();
   console.log(game.word);
   hangman = HANGMAN.split('');
   game.numberOfIncorrectGuesses = 0;
